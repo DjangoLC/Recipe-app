@@ -18,13 +18,6 @@ class SearchViewModel @Inject constructor(
     private val getSearchHistory: GetSearchHistory,
     private val saveSearchHistory: SaveSearchHistory
 ) : ViewModel() {
-    /*private val localDataSource = LocalDataSourceImpl
-    private val remoteDataSource = RemoteDataSourceImpl(
-        KtorClientImpl()
-    )
-
-    private val repository = RecipeRepositoryImpl(remoteDataSource, localDataSource, Dispatchers.IO)
-    private val historyRepository = HistoryRepository*/
 
     private val _searchResults = MutableSharedFlow<List<SearchRecipe>>(replay = 1)
     val searchResults: Flow<List<SearchRecipe>> = _searchResults

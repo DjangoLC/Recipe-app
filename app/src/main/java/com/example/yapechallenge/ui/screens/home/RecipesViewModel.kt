@@ -13,19 +13,17 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipesViewModel @Inject constructor(private val getAllRecipes: GetAllRecipes) : ViewModel() {
 
-    /*private val localDataSource = LocalDataSourceImpl
-    private val remoteDataSource = RemoteDataSourceImpl(
-        KtorClientImpl()
-    )
-    private val repository = RecipeRepositoryImpl(remoteDataSource, localDataSource, Dispatchers.IO)*/
-
     private val _recipes = MutableStateFlow<List<Recipe>>(emptyList())
     val recipes: Flow<List<Recipe>> = _recipes
+
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading: Flow<Boolean> = _isLoading
 
     init {
         viewModelScope.launch {
             getAllRecipes.buildUseCase(Unit).collect {
                 _recipes.emit(it)
+                _isLoading.emit(false)
             }
         }
     }

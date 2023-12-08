@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -77,6 +78,7 @@ fun RecipesScreen(
     onSearchClick: () -> Unit
 ) {
     val recipes = viewModel.recipes.collectAsState(initial = emptyList())
+    val showShimmer = viewModel.isLoading.collectAsState(initial = true)
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Scaffold(
@@ -123,12 +125,19 @@ fun RecipesScreen(
                 RecipesGrid(
                     recipes = recipes.value,
                     onRecipeClick = onRecipeClick,
-                    modifier = Modifier.padding(
-                        start = 16.dp,
-                        end = 16.dp,
-                        top = 8.dp,
-                        bottom = 8.dp
-                    )
+                    modifier = Modifier
+                        .padding(
+                            start = 16.dp,
+                            end = 16.dp,
+                            top = 8.dp,
+                            bottom = 8.dp
+                        )
+                        .background(
+                            shimmerBrush(
+                                targetValue = 1300f,
+                                showShimmer = showShimmer.value
+                            )
+                        ).fillMaxSize()
                 )
             }
         }

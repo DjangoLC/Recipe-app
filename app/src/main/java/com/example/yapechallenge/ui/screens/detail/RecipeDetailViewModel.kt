@@ -14,12 +14,6 @@ import javax.inject.Inject
 class RecipeDetailViewModel @Inject constructor(private val getRecipeUseCase: GetRecipe) :
     ViewModel() {
 
-    /*private val localDataSource = LocalDataSourceImpl
-    private val remoteDataSource = RemoteDataSourceImpl(
-        KtorClientImpl()
-    )
-    private val repository = RecipeRepositoryImpl(remoteDataSource, localDataSource, Dispatchers.IO)*/
-
     private val _recipe = MutableStateFlow(Recipe.EMPTY)
     val recipe: Flow<Recipe> = _recipe
 
