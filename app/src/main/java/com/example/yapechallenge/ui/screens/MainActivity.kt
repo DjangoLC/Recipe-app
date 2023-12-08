@@ -11,6 +11,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -32,8 +33,14 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    var showSplash = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen().setKeepOnScreenCondition{
+            showSplash
+        }
+
         setContent {
             YapeChallengeTheme {
 
@@ -65,6 +72,8 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }, {
                                     navController.navigate(Routes.SEARCH.screen)
+                                },{
+                                    showSplash = it
                                 })
                             }
                             composable(

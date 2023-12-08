@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.YapeChallenge" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.YapeChallenge" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#1FCC79</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.SplashScreen</item>
+        <item name="android:logoDescription">@string/app_name</item>
+    </style>
+
 </resources>

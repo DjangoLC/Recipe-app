@@ -36,6 +36,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -68,6 +69,7 @@ import com.example.yapechallenge.core.domain.Recipe
 import com.example.yapechallenge.ui.components.shimmerBrush
 import com.example.yapechallenge.ui.screens.detail.RecipeTitle
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -75,11 +77,13 @@ import kotlinx.coroutines.Dispatchers
 fun RecipesScreen(
     viewModel: RecipesViewModel,
     onRecipeClick: (Recipe) -> Unit,
-    onSearchClick: () -> Unit
+    onSearchClick: () -> Unit,
+    onScreenReady: (Boolean) -> Unit,
 ) {
     val recipes = viewModel.recipes.collectAsState(initial = emptyList())
     val showShimmer = viewModel.isLoading.collectAsState(initial = true)
     val keyboardController = LocalSoftwareKeyboardController.current
+    onScreenReady.invoke(!showShimmer.value)
 
     Scaffold(
         bottomBar = {
@@ -288,7 +292,7 @@ fun RecipeImage(imageUrl: String, contentDescription: String) {
             .diskCachePolicy(CachePolicy.ENABLED)
             .memoryCachePolicy(CachePolicy.ENABLED)
             .diskCacheKey(imageUrl)
-            .crossfade(false)
+            .crossfade(true)
             .build(),
         error = painterResource(R.drawable.baseline_broken_image),
         contentDescription = contentDescription,
