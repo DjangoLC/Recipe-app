@@ -26,6 +26,10 @@ Flows are used to manage the request of the data outside the main thread
 
 The proposal takes advantage of Compose to build the user interface.
 
+## How to run 
+
+-   **Gradle JDK:**  Java 17 should be used *Build > Execution > Deployment > Build tools > Gradle)*
+
 ## Good Practices
 
 The application implements the Android version catalog to ensure compatibility with the latest Android versions.
