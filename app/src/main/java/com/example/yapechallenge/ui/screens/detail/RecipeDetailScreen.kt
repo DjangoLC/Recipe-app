@@ -62,7 +62,12 @@ fun RecipeDetailScreen(
     val isLoading = recipeDetailViewModel.isLoading.collectAsState(initial = true)
 
     recipeDetailViewModel.getRecipeDetail(id ?: 0)
-    RecipeDetail(recipeEntry.value,isLoading.value, onIconClick = onIconClick, onIconMapClick = onIconMapClick)
+    RecipeDetail(
+        recipeEntry.value,
+        isLoading.value,
+        onIconClick = onIconClick,
+        onIconMapClick = onIconMapClick
+    )
 }
 
 @Composable
@@ -75,12 +80,17 @@ fun RecipeDetail(
 ) {
     Column {
         RecipeImageHeader(isLoading, recipe.imageUrl, recipe.name, onIconClick)
-        RecipeInfoCard(modifier,recipe, onIconMapClick)
+        RecipeInfoCard(modifier, recipe, onIconMapClick)
     }
 }
 
 @Composable
-fun RecipeImageHeader(isLoading: Boolean, imageUrl: String, description: String, onIconClick: () -> Unit) {
+fun RecipeImageHeader(
+    isLoading: Boolean,
+    imageUrl: String,
+    description: String,
+    onIconClick: () -> Unit
+) {
     Box {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -137,11 +147,11 @@ fun RecipeInfoCard(modifier: Modifier = Modifier, recipe: Recipe, onIconClick: (
     ) {
         Column(Modifier.padding(horizontal = 24.dp)) {
             RecipeTitle(title = recipe.name, modifier)
-            RecipeDetails(detailText = "Food · > ${recipe.timePreparation} mins",modifier)
+            RecipeDetails(detailText = "Food · > ${recipe.timePreparation} mins", modifier)
             Spacer(modifier = Modifier.height(8.dp))
             UserLikesSection(likes = 273, modifier)
             Spacer(modifier = Modifier.height(8.dp))
-            UserMapsSection(modifier,onIconClick = onIconClick)
+            UserMapsSection(modifier, onIconClick = onIconClick)
             DividerSection()
             RecipeSectionTitle(title = "Description", modifier)
             Spacer(modifier = Modifier.height(6.dp))
@@ -304,6 +314,19 @@ fun BoxedIcon(icon: ImageVector, modifier: Modifier = Modifier) {
                 .requiredSize(size = 18.dp)
         )
     }
+}
+
+
+@Preview
+@Composable
+fun RecipeImageHeaderPreview() {
+    RecipeImageHeader(false, "", Recipe.DEFAULT.name, {})
+}
+
+@Preview
+@Composable
+fun RecipeInfoCardPreview() {
+    RecipeInfoCard(Modifier, Recipe.DEFAULT, {})
 }
 
 @Preview

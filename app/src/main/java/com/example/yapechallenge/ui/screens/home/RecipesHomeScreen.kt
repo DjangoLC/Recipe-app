@@ -363,6 +363,48 @@ fun RecipeMeta(meta: String) {
 
 @Preview
 @Composable
+fun CustomBottomAppBarPreview() {
+    CustomBottomAppBar()
+}
+
+@Preview
+@Composable
+fun CustomSearchbarPreview() {
+    Searchbar(
+        modifier = Modifier
+            .padding(top = 32.dp, start = 16.dp, end = 16.dp),
+        onValueChange = {
+
+        }
+    )
+}
+
+@Preview
+@Composable
+fun CustomCategorySelectorPreview() {
+    CategorySelector(
+        modifier = Modifier.padding(top = 32.dp, start = 16.dp, end = 16.dp),
+        onCategorySelected = {
+
+        },
+        categories = listOf("All", "Food", "Drink"),
+        selectedCategory = "All"
+    )
+}
+
+@Preview
+@Composable
+fun CustomRecipesGridPreview() {
+    RecipesGrid(
+        recipes = (1..4).map { Recipe.DEFAULT },
+        onRecipeClick = {},
+        modifier = Modifier.padding(16.dp)
+    )
+}
+
+
+//@Preview
+@Composable
 fun RecipesScreenPreview() {
     Scaffold(
         bottomBar = {

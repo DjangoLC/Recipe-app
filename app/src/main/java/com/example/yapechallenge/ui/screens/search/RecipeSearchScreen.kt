@@ -1,5 +1,6 @@
 package com.example.yapechallenge.ui.screens.search
 
+import android.app.appsearch.SearchResult
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -331,6 +332,20 @@ fun InitialStatePreview() {
 @Composable
 fun SearchResultScreenPreview() {
     SearchResult(recipeResult = (1..4).map { SearchRecipe.DEFAULT }, onRecipeClick = {})
+}
+
+@Preview
+@Composable
+fun SearchViewPreview() {
+    SearchView(modifier = Modifier.padding(top = 32.dp, start = 16.dp, end = 16.dp),
+        onValueChange = {
+            ""
+        },
+        onIconBackClick = {},
+        onSearchKeyboardClick = {
+
+        }
+    )
 }
 
 @Preview
