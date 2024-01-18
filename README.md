@@ -1,6 +1,6 @@
 ## Introduction
 
-This is the solution to a Recipe app as part of a challenge proposed by **Yape**
+Recipe app created to put in practice my learnings of the book **Jetpack compose by tutorial - Kodeco**
 
 ## Screenshots 
 
